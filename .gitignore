@@ -9,6 +9,7 @@ wheels/
 
 .cache
 *.csv
+.DS_Store
 
 # Virtual environments
 .venv
