@@ -12,7 +12,8 @@ RUN apt-get update && \
 COPY . .
 
 # Create an in-project virtual environment using the locked dependency graph
-RUN uv sync --frozen --no-dev --in-project
+# `uv` 0.4+ renamed `--in-project` to `--project`, so we pin the path explicitly.
+RUN uv sync --frozen --no-dev --project /app
 
 
 ### Stage 2: slim runtime image with only what we need to serve FastAPI
