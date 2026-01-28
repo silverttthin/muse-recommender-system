@@ -34,6 +34,8 @@ postgresql+psycopg2://rec_engine:<Password>@localhost:5432/muse
 
 ---
 
+<div id="english-version"></div>
+
 
 # Recommendation Server
 
@@ -49,8 +51,6 @@ postgresql+psycopg2://rec_engine:<Password>@localhost:5432/muse
 This architecture inherently prevents unnecessary data manipulation and ensures the server only performs the read queries required for recommendation calculations.
 
 ---
-
-<div id="english-version"></div>
 
 ## Features
 
