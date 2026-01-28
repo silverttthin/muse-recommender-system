@@ -1,3 +1,5 @@
+<a href="#english-version">English</a>
+
 ## 추천 서버
 
 muse의 추천 서버입니다.
@@ -31,3 +33,42 @@ postgresql+psycopg2://rec_engine:<Password>@localhost:5432/muse
 * 키워드 기반 욕설 감지 라이브러리 [korcen](https://github.com/Tanat05/korcen/tree/main)을 활용하여 빠르고 가벼운 필터링을 수행합니다.
 
 ---
+
+
+# Recommendation Server
+
+This is the recommendation engine for the **muse** service.
+
+The server accesses the same PostgreSQL database as the main muse application but connects using an account granted a **read-only role**.
+
+```
+postgresql+psycopg2://rec_engine:<Password>@localhost:5432/muse
+
+```
+
+This architecture inherently prevents unnecessary data manipulation and ensures the server only performs the read queries required for recommendation calculations.
+
+---
+
+<div id="english-version"></div>
+
+## Features
+
+### 1. Content-Based Filtering Logic
+
+* **User Preference Vectoring**: Generates a user preference vector by calculating a weighted average of songs the user has rated.
+* **Candidate Vectoring**: Converts unrated songs into vectors for comparison.
+* **Feature Selection & Normalization**: Recommendations are based on four key song features: `energy`, `danceability`, `valence`, and `tempo`.
+* **Normalization**: Since `tempo` (35–228) operates on a different scale compared to the other features (0–1), it is normalized before processing.
+* **Optimization**: To ensure development efficiency while maintaining accuracy in capturing a song's overall atmosphere, these 4 features were selected from the total 12 available.
+
+
+* **Similarity Calculation**: Calculates the **Cosine Similarity** between the user vector and candidate vectors to generate a recommendation pool of the top 50 songs.
+* *Note: The home screen randomly selects and displays 10 songs from this pool.*
+
+
+
+### 2. Profanity Filtering
+
+* **Text Validation**: Scans all user-generated text within the muse service for profanity or abusive language.
+* **Library Integration**: Utilizes [korcen](https://www.google.com/search?q=https://github.com/Tanat05/korcen/tree/main), a keyword-based profanity detection library, to perform fast and lightweight filtering.
