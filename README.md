@@ -71,4 +71,4 @@ This architecture inherently prevents unnecessary data manipulation and ensures 
 ### 2. Profanity Filtering
 
 * **Text Validation**: Scans all user-generated text within the muse service for profanity or abusive language.
-* **Library Integration**: Utilizes [korcen](https://www.google.com/search?q=https://github.com/Tanat05/korcen/tree/main), a keyword-based profanity detection library, to perform fast and lightweight filtering.
+* **Library Integration**: Utilizes [korcen](https://github.com/Tanat05/korcen/tree/main), a keyword-based profanity detection library, to perform fast and lightweight filtering.
